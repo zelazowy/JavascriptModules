@@ -1,0 +1,35 @@
+var zelazowy = (function(space) {
+    return $.extend(space, {
+        core: (function() {
+            var space = {},
+                onDocumentReady = [],
+                onWindowReady = [];
+            
+            space.setOnDocumentReady = function(callback) {
+                onDocumentReady.push(callback);
+            };
+            
+            space.setOnWindowReady = function(callback) {
+                onWindowReady.push(callback);
+            };
+            
+            space.init = function() {
+                $(document).ready(function() {
+                    for (var i in onDocumentReady) {
+                        onDocumentReady[i]();
+                    }
+                });
+                
+                $(window).ready(function() {
+                    for (var i in onWindowReady) {
+                        onWindowReady[i]();
+                    }
+                });
+            };
+            
+            return space;
+        }())
+    });
+}(zelazowy || {}));
+
+zelazowy.core.init();
