@@ -1,0 +1,22 @@
+var zelazowy = (function(space) {
+    return $.extend(space, {
+        utils: (function() {
+            var space = {};
+            
+            space.isNullOrUndefined = function(variable) {
+                return variable === null || variable === undefined || ($.isPlainObject(variable) && $.isEmptyObject(variable));
+            };
+            
+            space.isEmptyObject = function(obj) {
+                return space.isNullOrUndefined(obj) || obj.length === 0;
+            };
+            
+            space.isEqual = function(var1, var2) {
+                return var1 === var2;
+            };
+            
+            return space;
+        }())
+    });
+}(zelazowy || {}))
+
